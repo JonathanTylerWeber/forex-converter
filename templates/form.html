@@ -17,10 +17,21 @@
     <button type="submit">Convert</button>
 </form>
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flash-messages">
+    {% for message in messages %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
 {% if converted_amount %}
+<br>
 <div>
     <h3>Converted Amount:</h3>
-    <p>{{ converted_amount }}</p>
+    <p>{{ converted_amount }} {{ to_currency }}</p>
 </div>
 {% endif %}
 
